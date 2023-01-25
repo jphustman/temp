@@ -1,10 +1,12 @@
 <?php
 
 namespace Model;
+use Exception;
 
 class User
 {
     protected $table = 'users';
+
     /**
      * @var int|null
      */
@@ -35,6 +37,7 @@ class User
      */
     private $role;
 
+
     /**
      * @param int|null $id
      * @param int|null $apiaryId
@@ -44,12 +47,12 @@ class User
      * @param string $role
      */
     public function __construct(
-        ?int $id,
-        ?int $apiaryId,
-        string $username,
-        string $email,
-        string $password,
-        string $role
+        ?int $id = null,
+        ?int $apiaryId = null,
+        string $username = "",
+        string $email = "",
+        string $password = "",
+        string $role = ""
     ) {
         $this->id = $id;
         $this->apiaryId = $apiaryId;
@@ -72,7 +75,7 @@ class User
     /**
      * @return int
      */
-    public function getApiaryId(): int
+    public function getApiaryId(): ?int
     {
         return $this->apiaryId;
     }
@@ -112,34 +115,123 @@ class User
 
     // Setters {
 
-    public function setId($id)
+    /**
+     * @param int|null $id
+     * @return void
+     */
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
-    public function setApiaryId($apiaryId)
+    /**
+     * @param int|null $apiaryId
+     * @return void
+     */
+    public function setApiaryId(?int $apiaryId): void
     {
         $this->apiaryId = $apiaryId;
     }
 
-    public function setUsername($username)
+    /**
+     * @param string $username
+     * @return void
+     */
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
-    public function setEmail($email)
+    /**
+     * @param string $email
+     * @return void
+     * @throws Exception
+     */
+    public function setEmail(string $email): void
     {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("Invalid email address");
+        }
         $this->email = $email;
     }
 
-    public function setPassword($password)
+    /**
+     * @param string $password
+     * @return void
+     * @throws Exception
+     */
+    public function setPassword(string $password): void
     {
-        $this->password = $password;
+        if (strlen($password) < 8) {
+            throw new Exception("Password must be at least 8 characters long");
+        }
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function setRole($role)
+    /**
+     * @return void
+     */
+    public function save(): void
     {
-        $this->role = $role;
+        if ($this->id) {
+            $query = "
+                UPDATE {$this->table}
+                SET
+                    apiaryid = :apiaryId,
+                    username = :username,
+                    email = :email,
+                    password = :password,
+                    role = :role
+                WHERE id = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+        } else {
+            $query = "
+                INSERT INTO {$this->table}
+                    (apiaryid, username, email, password, role)
+                VALUES
+                    (:apiaryId, :username, :email, :password, :role)";
+            $stmt = $this->pdo->prepare($query);
+        }
+
+        $stmt->bindValue(':apiaryId', $this->apiaryId);
+        $stmt->bindValue(':username', $this->username);
+        $stmt->bindValue(':email', $this->email);
+        $stmt->bindValue(':password', $this->password);
+        $stmt->bindValue(':role', $this->role);
+
+        $stmt->execute();
+
+        if (!$this->id) {
+            $this->id = $this->pdo->lastInsertId();
+        }
+    }
+
+    /**
+     * Load the user from the database
+     * @param int $id
+     * @return User|null
+     */
+    public static function load(PDO $pdo, int $id): ?self
+    {
+        $query = "SELECT * FROM users WHERE id = :id";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $data = $stmt->fetch();
+
+        if (!$data) {
+            return null;
+        }
+
+        return new self(
+            $pdo,
+            $data['id'],
+            $data['apiaryid'],
+            $data['username'],
+            $data['email'],
+            $data['password'],
+            $data['role']);
     }
 
     // }

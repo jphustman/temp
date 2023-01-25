@@ -4,21 +4,12 @@ use Model\UserRoles;
 
 class UserRoleFactory
 {
-//    protected static $pdo;
 
-//    public static function setPdo(PDO $pdo)
-//    {
-//        self::pdo = $pdo;
-//    }
-
-    public static function getUserRole($username)
+    public static function getUserRoles($userid)
     {
         return Database::select("
-            select `name` from roles where id = (
-                select `roleId` from user_roles where userid = (
-                    select `id` from users where username = '$username'
-                )
-            )
+            SELECT roles.name FROM roles JOIN user_roles ON roles.id = user_roles.roleId 
+WHERE user_roles.userId = '$userid'
         ");
     }
 
@@ -28,7 +19,6 @@ class UserRoleFactory
             insert into user_roles (roleId, userId) values ('$roleId', '$userId')
         ");
     }
-
 
 
 }

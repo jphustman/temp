@@ -1,15 +1,21 @@
 <?php
 
+namespace Controller;
+
+use StipItemFundingModel;
+
 class ConstController extends BaseController
 {
-    public function getStipYear() {
+    public function getStipYear()
+    {
         $stipModel = new StipItemFundingModel();
         $stipYear = $stipModel->getStipYear();
 
         return $stipYear[0]['STIP_YEAR'];
     }
 
-    public function getFFY() {
+    public function getFFY()
+    {
         $stipModel = new StipItemFundingModel();
         $stipFFY = $stipModel->getFFY();
 

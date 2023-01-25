@@ -23,46 +23,58 @@ USE `leagues-dev`;
 -- Dumping structure for table leagues-dev.roles
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
-                                       `id` int(11) NOT NULL,
-                                       `name` varchar(255) DEFAULT NULL,
-                                       `createdAt` datetime NOT NULL,
-                                       `updatedAt` datetime NOT NULL,
-                                       PRIMARY KEY (`id`)
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Data exporting was unselected.
+-- Dumping data for table leagues-dev.roles: ~3 rows (approximately)
+DELETE FROM `roles`;
+INSERT INTO `roles` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+	(1, 'user', '2023-01-21 21:17:22', '2023-01-21 21:17:22'),
+	(2, 'captain', '2023-01-21 21:17:22', '2023-01-21 21:17:22'),
+	(3, 'admin', '2023-01-21 21:17:22', '2023-01-21 21:17:22');
 
 -- Dumping structure for table leagues-dev.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-                                       `id` int(11) NOT NULL AUTO_INCREMENT,
-                                       `apiaryid` mediumint(9) DEFAULT NULL,
-                                       `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-                                       `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-                                       `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-                                       PRIMARY KEY (`id`),
-                                       UNIQUE KEY `number` (`apiaryid`) USING BTREE
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `apiaryid` mediumint(9) DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `number` (`apiaryid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table leagues-dev.users: ~1 rows (approximately)
+DELETE FROM `users`;
+INSERT INTO `users` (`id`, `apiaryid`, `username`, `email`, `password`) VALUES
+	(29, NULL, 'jphustman', 'jeremeyhustman@gmail.com', '$2y$10$DbopOdt2yTKd07PDL0HcS.jxfK7WBrkVIvHEu1Y2O4/jo40aoaC5C');
 
 -- Dumping structure for table leagues-dev.user_roles
 DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE IF NOT EXISTS `user_roles` (
-                                            `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-                                            `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-                                            `roleId` int(11) NOT NULL,
-                                            `userId` int(11) NOT NULL,
-                                            PRIMARY KEY (`roleId`,`userId`),
-                                            KEY `userId` (`userId`),
-                                            CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                                            CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `roleId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`roleId`,`userId`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Data exporting was unselected.
+-- Dumping data for table leagues-dev.user_roles: ~1 rows (approximately)
+DELETE FROM `user_roles`;
+INSERT INTO `user_roles` (`createdAt`, `updatedAt`, `roleId`, `userId`) VALUES
+	('2023-01-22 18:43:12', '2023-01-22 18:43:12', 1, 29);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+

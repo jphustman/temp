@@ -1,13 +1,19 @@
 <?php
 
+namespace Controller;
+
+use UserFactory;
+
 class UserController extends BaseController
 {
 
-    public function registerAction() {
+    public function register()
+    {
 
     }
 
-    public function listallAction() {
+    public function listall()
+    {
         $strErrorDesc = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
@@ -21,7 +27,7 @@ class UserController extends BaseController
                 $arrUsers = $userFactory->getAllUsers($intLimit);
                 $responseData = json_encode($arrUsers);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -41,14 +47,32 @@ class UserController extends BaseController
         }
     }
 
-    public function signupAction () {
+    public function signup()
+    {
 
 
     }
 
-    public function publicAction() {
+    public function public()
+    {
         $this->sendOutput(
             json_encode(['public']),
+            array('Content-Type: application/json', 'HTTP/1.1 200 OK')
+        );
+    }
+
+    public function user()
+    {
+        $this->sendOutput(
+            json_encode(['user']),
+            array('Content-Type: application/json', 'HTTP/1.1 200 OK')
+        );
+    }
+
+    public function captain()
+    {
+        $this->sendOutput(
+            json_encode(['captain']),
             array('Content-Type: application/json', 'HTTP/1.1 200 OK')
         );
     }

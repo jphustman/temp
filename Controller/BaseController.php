@@ -1,5 +1,7 @@
 <?php
-Class BaseController
+
+namespace Controller;
+class BaseController
 {
     /**
      * __call magic method.
@@ -35,10 +37,10 @@ Class BaseController
     /**
      * Send API output.
      *
-     * @param mixed  $data
+     * @param mixed $data
      * @param string $httpHeader
      */
-    protected function sendOutput($data, $httpHeaders=array())
+    protected function sendOutput($data, $httpHeaders = array())
     {
         header_remove('Set-Cookie');
 

@@ -1,5 +1,10 @@
 <?php
-require __DIR__ . "/inc/bootstrap.php";
+
+use Controller\AuthController;
+use Controller\ConstController;
+use Controller\UserController;
+
+require __DIR__ . "/../inc/bootstrap.php";
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
@@ -18,10 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
     // so we have to catch it through php://input
     $_REQUEST = json_decode(file_get_contents("php://input"), true);
 }
+// Convert request to object
+$request = (object)$_REQUEST;
 
-require PROJECT_ROOT_PATH . "/Controller/Api/ConstController.php";
-require PROJECT_ROOT_PATH . "/Controller/Api/AuthController.php";
-require PROJECT_ROOT_PATH . "/Controller/Api/UserController.php";
+require PROJECT_ROOT_PATH . "/Controller/ConstController.php";
+require PROJECT_ROOT_PATH . "/Controller/AuthController.php";
+require PROJECT_ROOT_PATH . "/Controller/UserController.php";
 
 switch ($uri[1]) {
     case "auth":
@@ -34,11 +41,11 @@ switch ($uri[1]) {
         dieGracefully();
 }
 
-$strMethodName = $uri[2] . 'Action';
+$strMethodName = $uri[2];
 
 // Set Constants
 $objConstController = new ConstController();
 
 // run request!
-$objController->{$strMethodName}();
+$objController->{$strMethodName}($request);
 
