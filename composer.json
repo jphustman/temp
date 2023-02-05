@@ -1,43 +1,46 @@
 {
-    "name": "odan/slim4-skeleton",
-    "description": "A Slim 4 skeleton",
-    "license": "MIT",
-    "type": "project",
+    "name": "maurobonfietti/slim4-api-skeleton",
+    "description": "Useful skeleton for RESTful API development, using PHP and Slim 4.",
     "keywords": [
-        "slim-framework",
-        "skeleton",
-        "slim",
+        "php",
+        "slim-micro-framework",
+        "rest-api",
+        "mysql",
         "slim4",
-        "apache"
+        "slim",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://github.com/maurobonfietti/slim4-api-skeleton",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mauro Bonfietti",
+            "email": "mauro.bonfietti@gmail.com",
+            "homepage": "https://github.com/maurobonfietti"
+        }
     ],
     "require": {
-        "php": "^8.0",
-        "ext-json": "*",
+        "php": "^8.1",
         "ext-pdo": "*",
-        "cakephp/chronos": "^2.3",
-        "cakephp/database": "^4",
-        "fig/http-message-util": "^1.1",
-        "firebase/php-jwt": "^6.3",
-        "monolog/monolog": "^3",
-        "nyholm/psr7": "^1.4",
-        "nyholm/psr7-server": "^1.0",
-        "php-di/php-di": "^6 || ^7",
-        "selective/basepath": "^2",
-        "slim/slim": "^4",
-        "symfony/uid": "^6",
-        "symfony/validator": "^6"
+        "ext-json": "*",
+        "pimple/pimple": "^3.2",
+        "slim/psr7": "^1.4.0",
+        "slim/slim": "^4.5",
+        "vlucas/phpdotenv": "^5.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3",
-        "mikey179/vfsstream": "^1.6",
-        "phpstan/phpstan": "1.*",
-        "phpunit/phpunit": "^8 || ^9",
-        "selective/test-traits": "^2",
-        "squizlabs/php_codesniffer": "^3",
-        "symfony/console": "6.0.*",
-        "symfony/event-dispatcher": "6.0.*",
-        "symfony/filesystem": "6.0.*",
-        "symfony/finder": "6.0.*"
+        "maurobonfietti/skel-api-slim-php-crud-generator": "dev-master",
+        "nunomaduro/phpinsights": "^2.0",
+        "phpunit/phpunit": "^9.0",
+        "symfony/console": "^4.4"
+    },
+    "config": {
+        "sort-packages": true,
+        "process-timeout": 0,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -46,27 +49,21 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Test\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
-    "config": {
-        "process-timeout": 0,
-        "sort-packages": true
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
-        "cs:check": "php-cs-fixer fix --dry-run --format=txt --verbose --diff --config=.cs.php --ansi",
-        "cs:fix": "php-cs-fixer fix --config=.cs.php --ansi",
-        "sniffer:check": "phpcs --standard=phpcs.xml",
-        "sniffer:fix": "phpcbf --standard=phpcs.xml",
-        "stan": "phpstan analyse -c phpstan.neon --no-progress --ansi --xdebug",
-        "start": "php -S localhost:8080 -t public/",
-        "test": "phpunit --configuration phpunit.xml --do-not-cache-result --colors=always",
-        "test:all": [
-            "@cs:check",
-            "@sniffer:check",
-            "@stan",
-            "@test"
+        "post-create-project-cmd": [
+            "php -r \"copy('.env.example', '.env');\"",
+            "php post-create-project-command.php"
         ],
-        "test:coverage": "php -d xdebug.mode=coverage -r \"require 'vendor/bin/phpunit';\" -- --configuration phpunit.xml --do-not-cache-result --colors=always --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
+        "coverage": "phpunit --coverage-text --coverage-html coverage",
+        "crud": "php console api:generate:endpoints",
+        "down": "docker-compose down",
+        "start": "php -S localhost:8080 -t public public/index.php",
+        "test": "phpunit",
+        "up": "docker-compose up -d --build"
     }
 }

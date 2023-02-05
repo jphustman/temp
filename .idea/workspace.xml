@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f401d66b-796b-4cf3-9c59-4161982f3b9b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/Auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Test.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jph-leagues-web/src/services/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jph-leagues-web/src/services/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jph-leagues-web/src/services/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../jph-leagues-web/src/services/user.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.cs.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/FUNDING.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/FUNDING.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/dependabot.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.scrutinizer.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.sonarcloud.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/console" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/container.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/defaults.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env.example.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/local.dev.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/local.github.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/local.prod.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/local.scrutinizer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/local.test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/middleware.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Gemfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_sass/custom/custom.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_sass/overrides.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/action.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/advanced.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/architecture.planuml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/favicon-slim.fw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/slim4-skeleton-logo-only.fw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/slim4-skeleton.fw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/cache.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/configuration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/console.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/database.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/deployment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/directory-structure.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/domain.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/file-storage.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/frontend.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/getting-started.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/http-client.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/image.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/installation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/links.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/logging.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mail.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/middleware.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvc2.planuml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/queues.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/renderers.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/request.planuml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/routing.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/security.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/session.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/task-scheduling.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/templates.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/testing.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/the-basics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/translations.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/uploading.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/validation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpstan.neon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/api/example_v1.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/docker/config/my.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/schema/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action/Home/HomeAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action/User/UserCreatorAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action/User/UserDeleterAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action/User/UserFinderAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action/User/UserReaderAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action/User/UserUpdaterAction.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Console/ExampleCommand.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Console/SetupCommand.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Data/UserFinderItem.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Data/UserFinderResult.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Data/UserReaderResult.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Repository/UserFinderRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Repository/UserRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Service/UserCreator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Service/UserDeleter.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Service/UserFinder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Service/UserReader.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Service/UserUpdater.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/User/Service/UserValidator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/ConstraintFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/ContainerFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/LoggerFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/QueryFactory.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/DefaultErrorHandler.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Middleware/ValidationExceptionMiddleware.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Renderer/JsonRenderer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Renderer/RedirectRenderer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Support/empty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Fixture/UserFixture.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Action/Home/HomeActionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Action/User/UserCreatorActionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Action/User/UserDeleteActionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Action/User/UserFinderActionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Action/User/UserReaderActionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Action/User/UserUpdaterActionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Factory/LoggerFactoryTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase/Renderer/RendererTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Traits/AppTestTrait.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Traits/LoggerTestTrait.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/routes/empty" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/phpapi/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true">
+    <xdebug_debug_ports port="9000" />
+    <xdebug_debug_ports port="9003" />
+    <xdebug_debug_ports port="9006" />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="leagues-api.test" id="53cdd7ae-f6ce-4f50-baf0-9d8eb9ce8e2d" name="leagues-api.test" port="8443" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/phpapi/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/composer" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/respect/validation" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/respect/stringifier" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/slim/psr7" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/phpapi/vendor/fig/http-message-util" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="2KFp30xEGAQZdU5VrCbnEidtqMr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Constants&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Leagues/phpapi&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;web-ide.project.structure&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f401d66b-796b-4cf3-9c59-4161982f3b9b" name="Changes" comment="" />
+      <created>1673579981739</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673579981739</updated>
+      <workItem from="1673579983034" duration="8080000" />
+      <workItem from="1673651562516" duration="8601000" />
+      <workItem from="1674333091262" duration="43577000" />
+      <workItem from="1674601128991" duration="13249000" />
+      <workItem from="1675562496906" duration="2451000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="convertingbackendtophp" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/inc/php-jwt/JWT.php</url>
+          <line>29</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controller/Api/AuthController.php</url>
+          <line>80</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/symfony/http-foundation/Request.php</url>
+          <line>679</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controller/AuthController.php</url>
+          <line>82</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controller/AuthController.php</url>
+          <line>70</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controller/AuthController.php</url>
+          <line>63</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/Test.php</url>
+          <line>6</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
