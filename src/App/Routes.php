@@ -9,4 +9,4 @@ $app->get('/user/add', 'App\Controller\User:addUser');
 
 $app->get('/test/all', 'App\Controller\Test:all');
 
-$app-get('/auth/register', 'App\Controller\Auth:register');
+$app->get('/auth/register', 'App\Controller\Auth:register');

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$container['db'] = static function (): PDO {
+$container->set('db', function (): PDO {
     $dsn = sprintf(
         'mysql:host=%s;dbname=%s;port=%s;charset=utf8',
         $_SERVER['DB_HOST'],
@@ -15,4 +15,4 @@ $container['db'] = static function (): PDO {
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
     return $pdo;
-};
+});
