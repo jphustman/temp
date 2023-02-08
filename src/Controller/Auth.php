@@ -5,16 +5,20 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\CustomResponse as Response;
-use Pimple\Psr11\Container;
+use DI\Container;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 final class Auth
 {
     private Container $container;
+    private $model;
+    private $log;
 
     public function __construct(Container $container)
     {
         $this->container = $container;
+        $this->db
+        $this->model = new UsersModel($db);
     }
 
     public function register(Request $request, Response $response): Response
@@ -23,15 +27,15 @@ final class Auth
         return $response->withJson($message);
     }
 
-    public function getStatus(Request $request, Response $response): Response
+    public function signin(Request $request, Response $response): Response
     {
+        $params = (array)$request->getParsedBody();
         $this->container->get('db');
+
         $status = [
             'status' => [
-                'database' => 'OK',
+                'username' => $params['username'],
             ],
-            'api' => self::API_NAME,
-            'version' => self::API_VERSION,
             'timestamp' => time(),
         ];
 
