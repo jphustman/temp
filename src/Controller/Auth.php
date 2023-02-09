@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\CustomResponse as Response;
 use DI\Container;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use \Firebase\JWT\JWT;
 
 use App\Models\Users;
 
@@ -58,15 +59,59 @@ final class Auth
     public function signin(Request $request, Response $response): Response
     {
         $params = (array)$request->getParsedBody();
-        $this->container->get('db');
 
-        $status = [
-            'status' => [
-                'username' => $params['username'],
-            ],
-            'timestamp' => time(),
-        ];
+        $username = $params['username'];
+        $password = $params['password'];
 
-        return $response->withJson($status);
+        // Verify the user credentials
+        $user = $this->model->getByUsername($username);
+        if (!$user) {
+            return $response->withJson([
+                'status' => 'Error',
+                'message' => 'Invalid username',
+                'timestamp' => time()
+            ]);
+        }
+
+        // https://www.techiediaries.com/php-jwt-authentication-tutorial/
+        if (!password_verify($password, $user['password'])) {
+            $secret_key = "YOUR_SECRET_KEY";
+            $issuer_claim = "THE_ISSUER"; // this can be the servername
+            $audience_claim = "THE_AUDIENCE";
+            $issuedat_claim = time(); // issued at
+            $notbefore_claim = $issuedat_claim + 10; //not before in seconds
+            $expire_claim = $issuedat_claim + 60; // expire time in seconds
+            $token = array(
+                "iss" => $issuer_claim,
+                "aud" => $audience_claim,
+                "iat" => $issuedat_claim,
+                "nbf" => $notbefore_claim,
+                "exp" => $expire_claim,
+                "data" => array(
+                    "id" => $id,
+                    "firstname" => $firstname,
+                    "lastname" => $lastname,
+                    "email" => $email
+                ));
+            return $response->withJson([
+                'status' => 'Error',
+                'message' => 'Invalid password!',
+                'timestamp' => time()
+            ]);
+        }
+
+        // Generate a JWT token
+        $token = JWT::encode([
+            'sub' => $user['id'],
+            'iat' => time(),
+            'ext' => time() + (60 * 60 * 24)
+        ], $this->container->get('settings')['jwt']['secret']);
+
+        return $response->withJson([
+            'status' => 'Success',
+            'token' => $token,
+            'timestamp' => time()
+
+        ]);
     }
 }

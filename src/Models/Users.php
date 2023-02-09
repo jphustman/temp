@@ -27,7 +27,7 @@ class Users {
     }
 
     public function getByUsername($username) {
-        $sql = $this->db->prepare("SELECT id from $this->table where username = :username");
+        $sql = $this->db->prepare("SELECT id, password from $this->table where username = :username");
         $sql->bindValue(':username', $username);
         $sql->execute();
 
