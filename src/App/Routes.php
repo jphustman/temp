@@ -10,5 +10,5 @@ $app->get('/user/all', 'App\Controller\User:all');
 
 $app->get('/test/all', 'App\Controller\Test:all');
 
-$app->get('/auth/register', 'App\Controller\Auth:register');
-$app->get('/auth/signin', 'App\Controller\Auth:signin');
+$app->post('/auth/register', 'App\Controller\Auth:register');
+$app->post('/auth/signin', 'App\Controller\Auth:signin');

@@ -111,13 +111,9 @@ final class Auth
         ], $this->container->get('settings')['jwt']['secret']);
         */
         $status = [
-            'data' => [
-                'status' => 'Success',
-                'accessToken' => $jwt,
-                'timestamp' => time()
-            ],
-            'status' => 200,
-            'statusText' => 'OK',
+            'status' => 'Success',
+            'accessToken' => $jwt,
+            'timestamp' => time()
         ];
 
         return $response->withJson($status);
