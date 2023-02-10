@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\CustomResponse as Response;
 use DI\Container;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use \Firebase\JWT\JWT;
+use Firebase\JWT\JWT;
 
 use App\Models\Users;
 
@@ -74,9 +74,9 @@ final class Auth
         }
 
         // https://www.techiediaries.com/php-jwt-authentication-tutorial/
-        if (!password_verify($password, $user['password'])) {
-            $secret_key = "YOUR_SECRET_KEY";
-            $issuer_claim = "THE_ISSUER"; // this can be the servername
+        if (password_verify($password, $user['password'])) {
+            $secret_key = $_ENV['JWT_SECRET'];
+            $issuer_claim = "TRADINGLEAGUES.COM"; // this can be the servername
             $audience_claim = "THE_AUDIENCE";
             $issuedat_claim = time(); // issued at
             $notbefore_claim = $issuedat_claim + 10; //not before in seconds
@@ -88,11 +88,11 @@ final class Auth
                 "nbf" => $notbefore_claim,
                 "exp" => $expire_claim,
                 "data" => array(
-                    "id" => $id,
-                    "firstname" => $firstname,
-                    "lastname" => $lastname,
-                    "email" => $email
+                    "id" => $user['id'],
+                    "firstname" => $user['username'],
+                    "email" => $user['email']
                 ));
+        } else {
             return $response->withJson([
                 'status' => 'Error',
                 'message' => 'Invalid password!',
@@ -100,18 +100,26 @@ final class Auth
             ]);
         }
 
+        $jwt = JWT::encode($token, $secret_key, 'HS256');
+
+        /*
         // Generate a JWT token
         $token = JWT::encode([
             'sub' => $user['id'],
             'iat' => time(),
             'ext' => time() + (60 * 60 * 24)
         ], $this->container->get('settings')['jwt']['secret']);
+        */
+        $status = [
+            'data' => [
+                'status' => 'Success',
+                'accessToken' => $jwt,
+                'timestamp' => time()
+            ],
+            'status' => 200,
+            'statusText' => 'OK',
+        ];
 
-        return $response->withJson([
-            'status' => 'Success',
-            'token' => $token,
-            'timestamp' => time()
-
-        ]);
+        return $response->withJson($status);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\CustomResponse as Response;
-use Pimple\Psr11\Container;
+use DI\Container;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 final class User
@@ -19,5 +19,10 @@ final class User
 
     public function getHelp(Request $request, Response $response): Response
     {
+    }
+
+    public function all(Request $request, Response $response): Response
+    {
+        return $response;
     }
 }
