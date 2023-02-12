@@ -1,0 +1,124 @@
+<?php
+
+namespace App\Models;
+
+class Alveo
+{
+    private $table = "alveo_export";
+    protected $db;
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
+    public function create(array $data): array
+    {
+        $account = $data['account'];
+        $dashmin = $data['dashmin'];
+        $accountCreatedOn = $data['account_created_on'];
+        $accountLabel = $data['account_label'];
+        $firstName = $data['first_name'];
+        $lastName = $data['last_name'];
+        $phone = $data['phone'];
+        $email = $data['email'];
+        $startBalance = $data['start_balance'];
+        $currentBalance = $data['current_balance'];
+        $highestBalance = $data['highest_balance'];
+        $lowestBalance = $data['lowest_balance'];
+        $dailyReturn = $data['daily_return'];
+        $numTrades = $data['num_trades'];
+        $numWinTrades = $data['num_win_trades'];
+        $numLossTrades = $data['num_loss_trades'];
+        $amtWinTrades = $data['amt_win_trades'];
+        $amtLossTrades = $data['amt_loss_trades'];
+        $avgWinTradeAmt = $data['avg_win_trade_amt'];
+        $avgLossTradeAmt = $data['avg_loss_trade_amt'];
+        $expectancy = $data['expectancy'];
+        $sharpeRatio = $data['sharpe_ratio'];
+        $reportDate = $data['report_date'];
+        $processingDate = $data['processing_date'];
+
+        $sql = $this->db->prepare("
+            insert into $this->table (
+                account,
+                dashmin,
+                account_created_on,
+                account_label,
+                first_name,
+                last_name,
+                phone,
+                email,
+                start_balance,
+                current_balance,
+                highest_balance,
+                lowest_balance,
+                daily_return,
+                num_trades,
+                num_win_trades,
+                num_loss_trades,
+                amt_win_trades,
+                amt_loss_trades,
+                avg_win_trade_amt,
+                avg_loss_trade_amt,
+                expectancy,
+                sharpe_ratio,
+                report_date,
+                processing_date
+            ) values (
+                :account,
+                :dashmin,
+                :account_created_on,
+                :account_label,
+                :first_name,
+                :last_name,
+                :phone,
+                :email,
+                :start_balance,
+                :current_balance,
+                :highest_balance,
+                :lowest_balance,
+                :daily_return,
+                :num_trades,
+                :num_win_trades,
+                :num_loss_trades,
+                :amt_win_trades,
+                :amt_loss_trades,
+                :avg_win_trade_amt,
+                :avg_loss_trade_amt,
+                :expectancy,
+                :sharpe_ratio,
+                :report_date,
+                :processing_date)"
+        );
+
+        $sql->bindValue(':account', $account);
+        $sql->bindValue(':dashmin', $dashmin);
+        $sql->bindValue(':account_created_on', $accountCreatedOn);
+        $sql->bindValue(':account_label', $accountLabel);
+        $sql->bindValue(':first_name', $firstName);
+        $sql->bindValue(':last_name', $lastName);
+        $sql->bindValue(':phone', $phone);
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':start_balance', $startBalance);
+        $sql->bindValue(':current_balance', $currentBalance);
+        $sql->bindValue(':highest_balance', $highestBalance);
+        $sql->bindValue(':lowest_balance', $lowestBalance);
+        $sql->bindValue(':daily_return', $dailyReturn);
+        $sql->bindValue(':num_trades', $numTrades);
+        $sql->bindValue(':num_win_trades', $numWinTrades);
+        $sql->bindValue(':num_loss_trades', $numLossTrades);
+        $sql->bindValue(':amt_win_trades', $amtWinTrades);
+        $sql->bindValue(':amt_loss_trades', $amtLossTrades);
+        $sql->bindValue(':avg_win_trade_amt', $avgWinTradeAmt);
+        $sql->bindValue(':avg_loss_trade_amt', $avgLossTradeAmt);
+        $sql->bindValue(':expectancy', $expectancy);
+        $sql->bindValue(':sharpe_ratio', $sharpeRatio);
+        $sql->bindValue(':report_date', $reportDate);
+        $sql->bindValue(':processing_date', $processingDate);
+
+        return $sql->execute();
+
+
+    }
+}

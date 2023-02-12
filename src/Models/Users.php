@@ -3,7 +3,7 @@
 namespace App\Models;
 
 class Users {
-    private $table = "users";
+    private string $table = "users";
     protected $db;
 
     public function __construct($db) {
@@ -71,6 +71,10 @@ class Users {
         $sql->bindValue(':password', $data['password']);
 
         if ($sql->execute()) {
+
+            $userId = $this->db->lastInsertId();
+            $this->assignRole($userId, 1);
+
             return [
                 'status' => 'Success',
                 'message' => 'User created successfully!'
@@ -83,8 +87,43 @@ class Users {
         };
     }
 
-    public function updateLastLogin($id) {
-        $sql = $this->db->prepare("update $this->table set last = NOW() where id = :id");
+    public function assignRole($userId, $roleId): array
+    {
+        $sql = $this->db->prepare("INSERT INTO user_roles (userId, roleId) values (:userId, :roleId)");
+        $sql->bindValue('userId', $userId);
+        $sql->bindValue('roleId', $roleId);
+
+        if ($sql->execute()) {
+            return [
+                'status' => 'Success',
+                'message' => "Role assigned successfully!"
+            ];
+        } else {
+            return [
+                'status' => 'Error',
+                'message' => 'Role assignment failed!'
+            ];
+        };
+    }
+
+    public function getRoles(int $userId): array
+    {
+        $sql = $this->db->prepare("SELECT name from roles where id = (select roleId FROM user_roles WHERE userId = :userId)");
+        $sql->bindValue(':userId', $userId);
+        $sql->execute();
+
+        $result = $sql->fetch();
+        $roles = [];
+        foreach ($result as $value ) {
+            $roles = array($result['name']);
+        }
+        return $roles;
+
+    }
+
+    public function updateLastLogin($id): void
+    {
+        $sql = $this->db->prepare("update $this->table set lastLogin = NOW() where id = :id");
         $sql->bindValue(':id', $id);
         $sql->execute();
     }

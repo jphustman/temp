@@ -7,6 +7,7 @@ $app->get('/status', 'App\Controller\Home:getStatus');
 
 $app->get('/user/add', 'App\Controller\User:addUser');
 $app->get('/user/all', 'App\Controller\User:all');
+$app->get('/user/public', 'App\Controller\User:public');
 
 $app->get('/test/all', 'App\Controller\Test:all');
 

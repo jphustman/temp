@@ -6,22 +6,31 @@ namespace App\Controller;
 
 use App\CustomResponse as Response;
 use DI\Container;
+use DI\DependencyException;
+use DI\NotFoundException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Firebase\JWT\JWT;
 
 use App\Models\Users;
+use App\Models\Roles;
 
 final class Auth
 {
     private Container $container;
-    private $model;
+    private Users $user;
+    private $roles;
     private $log;
 
+    /**
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
     public function __construct(Container $container)
     {
         $this->container = $container;
         $db = $this->container->get('db');
-        $this->model = new Users($db);
+        $this->user = new Users($db);
+        $this->roles = new Roles($db);
     }
 
     public function register(Request $request, Response $response): Response
@@ -37,7 +46,7 @@ final class Auth
         $password = password_hash($password, PASSWORD_BCRYPT);
 
         // Create a new user
-        $result = $this->model->create([
+        $result = $this->user->create([
             'username' => $username,
             'email' => $email,
             'password' => $password
@@ -64,7 +73,7 @@ final class Auth
         $password = $params['password'];
 
         // Verify the user credentials
-        $user = $this->model->getByUsername($username);
+        $user = $this->user->getByUsername($username);
         if (!$user) {
             return $response->withJson([
                 'status' => 'Error',
@@ -76,17 +85,18 @@ final class Auth
         // https://www.techiediaries.com/php-jwt-authentication-tutorial/
         if (password_verify($password, $user['password'])) {
             $secret_key = $_ENV['JWT_SECRET'];
-            $issuer_claim = "TRADINGLEAGUES.COM"; // this can be the servername
+            $issuer_claim = "https://tradingleagues.com"; // this can be the servername
             $audience_claim = "THE_AUDIENCE";
-            $issuedat_claim = time(); // issued at
-            $notbefore_claim = $issuedat_claim + 10; //not before in seconds
-            $expire_claim = $issuedat_claim + 60; // expire time in seconds
+            $issuedat_claim = Time(); // issued at
+            $notbefore_claim = $issuedat_claim - 10; //not before in seconds
+//            $expire_claim = $issuedat_claim.setDate() + 1; // expire time in seconds
             $token = array(
+                "sub" => $username,
                 "iss" => $issuer_claim,
                 "aud" => $audience_claim,
                 "iat" => $issuedat_claim,
                 "nbf" => $notbefore_claim,
-                "exp" => $expire_claim,
+//                "exp" => $expire_claim,
                 "data" => array(
                     "id" => $user['id'],
                     "firstname" => $user['username'],
@@ -102,6 +112,8 @@ final class Auth
 
         $jwt = JWT::encode($token, $secret_key, 'HS256');
 
+        $userRoles = $this->user->getRoles($user['id']);
+
         /*
         // Generate a JWT token
         $token = JWT::encode([
@@ -112,7 +124,11 @@ final class Auth
         */
         $status = [
             'status' => 'Success',
+            'id' => $user['id'],
+            'username' => $user['username'],
+            'email' => $user['email'],
             'accessToken' => $jwt,
+            'roles' => $userRoles,
             'timestamp' => time()
         ];
 
