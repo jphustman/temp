@@ -21,7 +21,7 @@ final class Alveo
     {
         $this->container = $container;
         $db = $this->container->get('db');
-        $this->alveo = new Alveo($db);
+        $this->export = new Alveo($db);
     }
 
     public function import(Request $request, Response $response): Response
