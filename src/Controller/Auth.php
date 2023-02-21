@@ -75,7 +75,7 @@ final class Auth
         // Verify the user credentials
         $user = $this->user->getByUsername($username);
         if (!$user) {
-            return $response->withJson([
+            return $response->withStatus(404, [
                 'status' => 'Error',
                 'message' => 'Invalid username',
                 'timestamp' => time()
