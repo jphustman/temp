@@ -10,4 +10,4 @@
 /.scannerwork/
 /.phpunit.result.cache
 /.idea/
-/config/.env
+env.php
