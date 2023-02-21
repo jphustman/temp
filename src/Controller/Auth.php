@@ -75,11 +75,12 @@ final class Auth
         // Verify the user credentials
         $user = $this->user->getByUsername($username);
         if (!$user) {
-            return $response->withStatus(404, [
-                'status' => 'Error',
-                'message' => 'Invalid username',
-                'timestamp' => time()
-            ]);
+            //return $response->withJson([
+                //'status' => 'Error',
+                //'message' => 'Invalid username',
+                //'timestamp' => time()
+            //]);
+            return $response->withStatus(404, 'Invalid username!');
         }
 
         // https://www.techiediaries.com/php-jwt-authentication-tutorial/
