@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Alveo
+class AlveoExport
 {
     private $table = "alveo_export";
     protected $db;

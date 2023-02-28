@@ -10,4 +10,5 @@
 /.scannerwork/
 /.phpunit.result.cache
 /.idea/
-env.php
+.env
+.env.old
