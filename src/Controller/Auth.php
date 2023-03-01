@@ -38,8 +38,10 @@ final class Auth
         $params = (array)$request->getParsedBody();
         $db = $this->container->get('db');
 
-        $username = $params['username'];
+        $firstname = $params['firstname'];
+        $lastname = $params['lastname'];
         $email = $params['email'];
+        $username = $params['username'];
         $password = $params['password'];
 
         // Hash the password
@@ -47,8 +49,10 @@ final class Auth
 
         // Create a new user
         $result = $this->user->create([
-            'username' => $username,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
             'email' => $email,
+            'username' => $username,
             'password' => $password
         ]);
 

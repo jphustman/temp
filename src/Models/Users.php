@@ -27,7 +27,7 @@ class Users {
     }
 
     public function getByUsername($username) {
-        $sql = $this->db->prepare("SELECT id, username, email, password from $this->table where username = :username");
+        $sql = $this->db->prepare("SELECT id, firstname, lastname, email from $this->table where username = :username");
         $sql->bindValue(':username', $username);
         $sql->execute();
 
@@ -43,8 +43,10 @@ class Users {
     }
     public function create(array $data): array
     {
-        $username = $data['username'];
+        $firstname = $data['firstname'];
+        $lastname = $data['lastname'];
         $email = $data['email'];
+        $username = $data['username'];
         $password = $data['password'];
 
         // Check if username already exists
@@ -65,10 +67,12 @@ class Users {
             ];
         }
 
-        $sql = $this->db->prepare("insert into $this->table (username, email, password) values (:username, :email, :password)");
-        $sql->bindValue(':username', $data['username']);
-        $sql->bindValue(':email', $data['email']);
-        $sql->bindValue(':password', $data['password']);
+        $sql = $this->db->prepare("insert into $this->table (firstname, lastname, email, username, password) values (:firstname, :lastname, :email, :username, :password)");
+        $sql->bindValue(':firstname', $firstname);
+        $sql->bindValue(':lastname', $lastname);
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':username', $username);
+        $sql->bindValue(':password', $password);
 
         if ($sql->execute()) {
 
