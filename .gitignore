@@ -12,3 +12,4 @@
 /.idea/
 .env
 .env.old
+config/env.php
