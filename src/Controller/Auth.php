@@ -99,7 +99,7 @@ final class Auth
 //                "exp" => $expire_claim,
                 "data" => array(
                     "id" => $user['id'],
-                    "firstname" => $user['username'],
+                    "username" => $user['username'],
                     "email" => $user['email']
                 ));
         } else {
