@@ -1,0 +1,28 @@
+image: atlassian/default-image:3
+
+pipelines:
+  branches:
+    release/dev:
+      - step:
+          name: Deploy API to Dev
+          script:
+            - cat ./deploy/deploy-api-to-dev.sh | ssh $SSH_USER@$SSH_HOST
+            - echo "Deployed API to Dev!"
+    release/test:
+      - step:
+          name: Deploy API to Test
+          script:
+            - cat ./deploy/deploy-api-to-test.sh | ssh $SSH_USER@$SSH_HOST
+            - echo "Deployed API to Test!"
+    release/stage:
+      - step:
+          name: Deploy API to Stage
+          script:
+            - cat ./deploy/deploy-api-to-stage.sh | ssh $SSH_USER@$SSH_HOST
+            - echo "Deployed API to Staging!"
+    release/prod:
+      - step:
+          name: Deploy API to Prod
+          script:
+            - cat ./deploy/deploy-api-to-prod.sh | ssh $SSH_USER@$SSH_HOST
+            - echo "Deployed API to Production!"
