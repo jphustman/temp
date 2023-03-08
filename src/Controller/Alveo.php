@@ -24,8 +24,9 @@ final class Alveo
         $this->export = new Alveo($db);
     }
 
-#    public function import(Request $request, Response $response): Response
-#    {
-#
-#    }
+    public function import(Request $request, Response $response): Response
+    {
+        $renderer = new PhpRenderer(__DIR__ . 'templates');
+    }
+
 }
