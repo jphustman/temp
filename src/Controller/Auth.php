@@ -10,6 +10,7 @@ use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Firebase\JWT\JWT;
+use Exception;
 
 use App\Models\Users;
 use App\Models\Roles;
@@ -79,7 +80,9 @@ final class Auth
         // Verify the user credentials
         $user = $this->user->getByUsername($username);
         if (!$user) {
-            return $response->withStatus(404, 'Username does not exist.');
+            $response = $response->withStatus(401, 'Username does not exist.');
+            $response->getBody()->write('Username does not exist.');
+            return $response;
         }
 
         // https://www.techiediaries.com/php-jwt-authentication-tutorial/
@@ -103,7 +106,9 @@ final class Auth
                     "email" => $user['email']
                 ));
         } else {
-            return $response->withStatus(404, 'Incorrect password.');
+            $response = $response->withStatus(401, 'Incorrect password.');
+            $response->getBody()->write('Incorrect password.');
+            return $response;
         }
 
         $jwt = JWT::encode($token, $secret_key, 'HS256');
