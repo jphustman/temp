@@ -13,4 +13,3 @@
 .env
 .env.old
 config/env.php
-*.sql
