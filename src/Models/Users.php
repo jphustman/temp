@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class Users {
     private string $table = "users";
     protected $db;
@@ -77,7 +79,7 @@ class Users {
         if ($sql->execute()) {
 
             $userId = $this->db->lastInsertId();
-            $this->assignRole($userId, 1);
+            $this->assignRole($userId, 3);
 
             return [
                 'status' => 'Success',
@@ -112,14 +114,14 @@ class Users {
 
     public function getRoles(int $userId): array
     {
-        $sql = $this->db->prepare("SELECT name from roles where id = (select roleId FROM user_roles WHERE userId = :userId)");
+        $sql = $this->db->prepare("SELECT r.id, r.name, ur.roleId FROM roles r JOIN user_roles ur ON r.id = ur.roleId WHERE ur.userId = :userId");
         $sql->bindValue(':userId', $userId);
         $sql->execute();
 
-        $result = $sql->fetch();
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         $roles = [];
-        foreach ($result as $value ) {
-            $roles = array($result['name']);
+        foreach ($result as $row) {
+            $roles[] = $row['name'];
         }
         return $roles;
 
