@@ -16,70 +16,76 @@ final class Alveo
 {
     private Container $container;
     private AlveoExport $alveoexport;
+    private $db;
 
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $db = $this->container->get('db');
-        $this->alveoexport = new AlveoExport($db);
     }
 
     public function import(Request $request, Response $response): Response
     {
         // Get the POST data
-        $data = $request->getParsedBody();
+        $data = (array)$request->getParsedBody();
 
-        // Split the data into an array
-        $fields = explode("\t", $data);
+        // Split the data into an array of rows
+        $rows = explode("\n", $data['data']);
 
         // Define the property names
         $keys = array(
             'dashmin',
             'link',
             'account',
-            'account_created_on',
-            'account_label',
-            'first_name',
-            'last_name',
+            'accountCreatedOn',
+            'accountLabel',
+            'firstName',
+            'lastName',
             'phone',
             'email',
             'beeline',
-            'start_balance',
-            'current_balance',
+            'startBalance',
+            'currentBalance',
             'difference',
-            'lowest_balance',
-            'highest_balance',
-            'daily_return',
-            'num_trades',
-            'num_win_trades',
-            'num_loss_trades',
-            'amt_win_trades',
-            'amt_loss_trades',
-            'avg_win_trade_days',
-            'avg_loss_trade_days',
-            'avg_win_trade_amt',
-            'avg_loss_trade_amt',
-            'avg_win_trades_total',
-            'avg_loss_trades_total',
+            'lowestBalance',
+            'highestBalance',
+            'dailyReturn',
+            'numTrades',
+            'numWinTrades',
+            'numLossTrades',
+            'amtWinTrades',
+            'amtLossTrades',
+            'avgWinTradeDays',
+            'avgLossTradeDays',
+            'avgWinTradeAmt',
+            'avgLossTradeAmt',
             'expectancy',
-            'sharpe_ratio',
-            'report_date',
-            'processing_date'
-            );
+            'sharpeRatio',
+            'reportDate',
+            'processingDate'
+        );
 
-        // Map the properties to an associative array
-        $result = array_combine($keys, $fields);
+        // Get the database instance from the container
+        $db = $this->container->get('db');
 
-        // Encode the array as JSON
-        $json = json_encode($result);
+        // Loop through each row of data
+        foreach ($rows as $row) {
 
-        var_dump($json);
+            // Split the row into an array
+            $fields = explode("\t", $row);
 
-        // Call the importData method on the AlveoExport instance
-        $result = $this->alveoexport->save($data['alveoimport']);
+            // Map the properties to an associative array
+            $dataArray = array_combine($keys, $fields);
 
-        // Create a response with the import result
-        $response->getBody->write(json_encode($result));
+            // Instantiate the AlveoExport Class
+            $alveoExport = new AlveoExport($db, $dataArray);
+
+            // Call the save method on the AlveoExport instance
+            $result = $alveoExport->save();
+
+            // Create a response with the import result
+            $response->getBody()->write(json_encode($result));
+        }
+
         return $response->withHeader('Content-Type', 'application/json');
     }
 

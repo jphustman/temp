@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use PDO;
 use Exception;
 
 class AlveoExport
@@ -11,195 +13,157 @@ class AlveoExport
     /**
      * @var int
      */
-    private $id;
+    private int $account;
 
     /**
      * @var int
      */
-    private $account;
+    private int $dashmin;
 
     /**
-     * @var int
+     * @var string|null
      */
-    private $dashmin;
+    private ?string $accountCreatedOn = null;
 
     /**
-     * @var date
+     * @var string|null
      */
-    private $accountCreatedOn;
+    private ?string $accountLabel = null;
+
+    /**
+     * @var string|null
+     */
+    private ?string $firstName = null;
+
+    /**
+     * @var string|null
+     */
+    private ?string $lastName = null;
+
+    /**
+     * @var string|null
+     */
+    private ?string $phone = null;
+
+    /**
+     * @var string|null
+     */
+    private ?string $email = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $startBalance = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $currentBalance = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $highestBalance = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $lowestBalance = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $dailyReturn = null;
+
+    /**
+     * @var int|null
+     */
+    private ?int $numTrades = null;
+
+    /**
+     * @var int|null
+     */
+    private ?int $numWinTrades = null;
+
+    /**
+     * @var int|null
+     */
+    private ?int $numLossTrades = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $amtWinTrades = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $amtLossTrades = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $avgWinTradeAmt = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $avgLossTradeAmt = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $expectancy = null;
+
+    /**
+     * @var float|null
+     */
+    private ?float $sharpeRatio = null;
 
     /**
      * @var string
      */
-    private $accountLabel;
+    private string $reportDate;
 
     /**
      * @var string
      */
-    private $firstName;
+    private string $processingDate;
 
-    /**
-     * @var string
-     */
-    private $lastName;
 
-    /**
-     * @var string
-     */
-    private $phone;
-
-    /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @var float
-     */
-    private $startBalance;
-
-    /**
-     * @var float
-     */
-    private $currentBalance;
-
-    /**
-     * @var float
-     */
-    private $highestBalance;
-
-    /**
-     * @var float
-     */
-    private $lowestBalance;
-
-    /**
-     * @var float
-     */
-    private $dailyReturn;
-
-    /**
-     * @var int
-     */
-    private $numTrades;
-
-    /**
-     * @var int
-     */
-    private $numWinTrades;
-
-    /**
-     * @var int
-     */
-    private $numLossTrades;
-
-    /**
-     * @var float
-     */
-    private $amtWinTrades;
-
-    /**
-     * @var float
-     */
-    private $amtLossTrades;
-
-    /**
-     * @var float
-     */
-    private $avgWinTradeAmt;
-
-    /**
-     * @var float
-     */
-    private $avgLossTradeAmt;
-
-    /**
-     * @var float
-     */
-    private $expectancy;
-
-    /**
-     * @var float
-     */
-    private $sharpe_ratio;
-
-    /**
-     * @var date
-     */
-    private $reportDate;
-
-    /**
-     * @var date
-     */
-    private $processingDate;
-
-    public function __construct($db) {
-        $this->db = $db;
-    }
-/*
     public function __construct(
-        int $id,
-        int $account,
-        int $dashmin,
-        date $accountCreatedOn,
-        string $accountLabel,
-        string $firstName,
-        string $lastName,
-        string $phone,
-        string $email,
-        float $startBalance,
-        float $currentBalance,
-        float $highestBalance,
-        float $lowestBalance,
-        float $dailyReturn,
-        int $numTrades,
-        int $numWinTrades,
-        int $numLossTrades,
-        float $amtWinTrades,
-        float $amtLossTrades,
-        float $avgWinTradeAmt,
-        float $avgLossTradeAmt,
-        float $expectancy,
-        float $sharpeRatio,
-        date $reportDate,
-        date $processingDate
+        $db,
+        $data
     ) {
-        $this->id = $id;
-        $this->account = $account;
-        $this->dashmin = $dashmin;
-        $this->accountCreatedOn = $accountCreatedOn;
-        $this->accountLabel = $accountLabel;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->phone = $phone;
-        $this->email = $email;
-        $this->startBalance = $startBalance;
-        $this->currentBalance = $currentBalance;
-        $this->highestBalance = $highestBalance;
-        $this->lowestBalance = $lowestBalance;
-        $this->dailyReturn = $dailyReturn;
-        $this->numTrades = $numTrades;
-        $this->numWinTrades = $numWinTrades;
-        $this->numLossTrades = $numLossTrades;
-        $this->amtWinTrades = $amtWinTrades;
-        $this->amtLossTrades = $amtLossTrades;
-        $this->avgWinTradeAmt = $avgWinTradeAmt;
-        $this->avgLossTradeAmt = $avgLossTradeAmt;
-        $this->expectancy = $expectancy;
-        $this->sharpeRatio = $sharpeRatio;
-        $this->reportDate = $reportDate;
-        $this->processingDate = $processingDate;
-    }*/
+        $this->db = $db;
+
+        $this->account = (int) $data['account'];
+        $this->dashmin = (int) $data['dashmin'];
+        $this->accountCreatedOn = date_create_from_format('Y-m-d', $data['accountCreatedOn']) ? date_create_from_format('Y-m-d', $data['accountCreatedOn'])->format('Y-m-d') : null;
+        $this->accountLabel = (string) $data['accountLabel'];
+        $this->firstName = (string) $data['firstName'];
+        $this->lastName = (string) $data['lastName'];
+        $this->phone = (string) $data['phone'];
+        $this->email = (string) $data['email'];
+        $this->startBalance = (float) preg_replace('/[^0-9\.]/', '', $data['startBalance']);
+        $this->currentBalance = (float) preg_replace('/[^0-9\.]/', '', $data['currentBalance']);
+        $this->highestBalance = (float) $data['highestBalance'];
+        $this->lowestBalance = (float) $data['lowestBalance'];
+        $this->dailyReturn = (float) rtrim($data['dailyReturn'], '%');
+        $this->numTrades = (int) $data['numTrades'];
+        $this->numWinTrades = (int) $data['numWinTrades'];
+        $this->numLossTrades = (int) $data['numLossTrades'];
+        $this->amtWinTrades = (float) $data['amtWinTrades'];
+        $this->amtLossTrades = (float) $data['amtLossTrades'];
+        $this->avgWinTradeAmt = (float) $data['avgWinTradeAmt'];
+        $this->avgLossTradeAmt = (float) $data['avgLossTradeAmt'];
+        $this->expectancy = (float) $data['expectancy'];
+        $this->sharpeRatio = (float) $data['sharpeRatio'];
+        $this->reportDate = date_create_from_format('Y-m-d', $data['reportDate']) ? date_create_from_format('Y-m-d', $data['reportDate'])->format('Y-m-d') : null;
+        $this->processingDate = date_create_from_format('Y-m-d', $data['processingDate']) ? date_create_from_format('Y-m-d', $data['processingDate'])->format('Y-m-d') : null;
+    }
 
     // Getters {
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     /**
      * @return int
@@ -218,9 +182,9 @@ class AlveoExport
     }
 
     /**
-     * @return date
+     * @return DateTime|null
      */
-    public function getAccountCreatedOn(): date
+    public function getAccountCreatedOn(): ?DateTime
     {
         return $this->accountCreatedOn;
     }
@@ -396,14 +360,6 @@ class AlveoExport
     // Setters {
 
     /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @param int $account
      */
     public function setAccount(int $account)
@@ -420,9 +376,9 @@ class AlveoExport
     }
 
     /**
-     * @param date $accountCreatedOn
+     * @param DateTime|null $accountCreatedOn
      */
-    public function setAccountCreatedOn(date $accountCreatedOn)
+    public function setAccountCreatedOn(?DateTime $accountCreatedOn)
     {
         $this->accountCreatedOn = $accountCreatedOn;
     }
@@ -483,7 +439,7 @@ class AlveoExport
     /**
      * @param float $currentBalance
      */
-    public function setCurrentBalance($currentBalance)
+    public function setCurrentBalance(float $currentBalance)
     {
         $this->currentBalance = $currentBalance;
     }
@@ -606,39 +562,20 @@ class AlveoExport
      */
     public function save(): void
     {
-        if ($this->account) {
+        $dupQuery = "
+                    SELECT COUNT(*)
+                    FROM alveo_export
+                    WHERE account = :account
+                    AND report_date = :reportDate";
+        $stmt = $this->db->prepare($dupQuery);
+        $stmt->bindValue(':account', $this->account);
+        $stmt->bindValue(':reportDate', $this->reportDate);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        if ($count == 0) {
             $query = "
-                UPDATE {$this->table}
-                SET
-                    dashmin = :dashmin,
-                    account_created_on = :accountCreatedOn,
-                    account_label = :accountLabel,
-                    first_name = :firstName,
-                    last_name = :lastName,
-                    phone = :phone,
-                    email = :email,
-                    start_balance = :startBalance,
-                    current_balance = :currentBalance,
-                    highest_balance = :highestBalance,
-                    lowest_balance = :lowestBalance,
-                    daily_return = :dailyReturn,
-                    num_trades = :numTrades,
-                    num_win_trades = :numWinTrades,
-                    num_loss_trades = :numLossTrades,
-                    amt_win_trades = :amtWinTrades,
-                    amt_loss_trades = :amtLossTrades,
-                    avg_win_trade_amt = :avgWinTradeAmt,
-                    avg_loss_trade_amt = :avgLossTradeAmt,
-                    expectancy = :expectancy,
-                    sharpe_ratio = :sharpeRatio,
-                    report_date = :reportDate,
-                    processing_date = :processingDate
-                WHERE account = :account";
-            $stmt = $this->pdo->prepare($query);
-            $stmt->bindValue(':account', $this->account);
-        } else {
-            $query = "
-                INSERT INTO {$this->table}
+                INSERT INTO alveo_export
                     (account, dashmin, account_created_on, account_label, first_name, last_name, phone, email, start_balance, current_balance, 
                     highest_balance, lowest_balance, daily_return, num_trades, num_win_trades, num_loss_trades, amt_win_trades, amt_loss_trades,
                     avg_win_trade_amt, avg_loss_trade_amt, expectancy, sharpe_ratio, report_date, processing_date)
@@ -646,40 +583,41 @@ class AlveoExport
                     (:account, :dashmin, :accountCreatedOn, :accountLabel, :firstName, :lastName, :phone, :email, :startBalance, :currentBalance, 
                     :highestBalance, :lowestBalance, :dailyReturn, :numTrades, :numWinTrades, :numLossTrades, :amtWinTrades, :amtLossTrades,
                     :avgWinTradeAmt, :avgLossTradeAmt, :expectancy, :sharpeRatio, :reportDate, :processingDate)";
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindValue(':account', $this->account);
+            $stmt->bindValue(':dashmin', $this->dashmin);
+            $stmt->bindValue(':accountCreatedOn', $this->accountCreatedOn);
+            $stmt->bindValue(':accountLabel', $this->accountLabel);
+            $stmt->bindValue(':firstName', $this->firstName);
+            $stmt->bindValue(':lastName', $this->lastName);
+            $stmt->bindValue(':phone', $this->phone);
+            $stmt->bindValue(':email', $this->email);
+            $stmt->bindValue(':startBalance', $this->startBalance);
+            $stmt->bindValue(':currentBalance', $this->currentBalance);
+            $stmt->bindValue(':highestBalance', $this->highestBalance);
+            $stmt->bindValue(':lowestBalance', $this->lowestBalance);
+            $stmt->bindValue(':dailyReturn', $this->dailyReturn);
+            $stmt->bindValue(':numTrades', $this->numTrades);
+            $stmt->bindValue(':numWinTrades', $this->numWinTrades);
+            $stmt->bindValue(':numLossTrades', $this->numLossTrades);
+            $stmt->bindValue(':amtWinTrades', $this->amtWinTrades);
+            $stmt->bindValue(':amtLossTrades', $this->amtLossTrades);
+            $stmt->bindValue(':avgWinTradeAmt', $this->avgWinTradeAmt);
+            $stmt->bindValue(':avgLossTradeAmt', $this->avgLossTradeAmt);
+            $stmt->bindValue(':expectancy', $this->expectancy);
+            $stmt->bindValue(':sharpeRatio', $this->sharpeRatio);
+            $stmt->bindValue(':reportDate', $this->reportDate);
+            $stmt->bindValue(':processingDate', $this->processingDate);
+
+            $stmt->execute();
+
         }
 
-        $stmt->bindValue(':account', $this->account);
-        $stmt->bindValue(':dashmin', $this->dashmin);
-        $stmt->bindValue(':accountCreatedOn', $this->accountCreatedOn);
-        $stmt->bindValue(':accountLabel', $this->accountLabel);
-        $stmt->bindValue(':firstName', $this->firstName);
-        $stmt->bindValue(':lastName', $this->lastName);
-        $stmt->bindValue(':phone', $this->phone);
-        $stmt->bindValue(':email', $this->email);
-        $stmt->bindValue(':startBalance', $this->startBalance);
-        $stmt->bindValue(':currentBalance', $this->currentBalance);
-        $stmt->bindValue(':highestBalance', $this->highestBalance);
-        $stmt->bindValue(':lowestBalance', $this->lowestBalance);
-        $stmt->bindValue(':dailyReturn', $this->dailyReturn);
-        $stmt->bindValue(':numTrades', $this->numTrades);
-        $stmt->bindValue(':numWinTrades', $this->numWinTrades);
-        $stmt->bindValue(':numLossTrades', $this->numLossTrades);
-        $stmt->bindValue(':amtWinTrades', $this->amtWinTrades);
-        $stmt->bindValue(':amtLossTrades', $this->amtLossTrades);
-        $stmt->bindValue(':avgWinTradeAmt', $this->avgWinTradeAmt);
-        $stmt->bindValue(':avgLossTradeAmt', $this->avgLossTradeAmt);
-        $stmt->bindValue(':expectancy', $this->expectancy);
-        $stmt->bindValue(':sharpeRatio', $this->sharpeRatio);
-        $stmt->bindValue(':reportDate', $this->reportDate);
-        $stmt->bindValue(':processingDate', $this->processingDate);
-
-        $stmt->execute();
     }
 
     /**
      * Load the AlveoExport from the database
-     * @param int $id
      * @return AlveoExport|null
      */
     public static function load(PDO $pdo, int $account): ?self
