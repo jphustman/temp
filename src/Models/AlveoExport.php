@@ -1,11 +1,12 @@
 <?php
 
-namespace Model;
+namespace App\Models;
 use Exception;
 
 class AlveoExport
 {
-    protected $table = 'alveo_export';
+    private $table = 'alveo_export';
+    protected $db;
 
     /**
      * @var int
@@ -53,27 +54,27 @@ class AlveoExport
     private $email;
 
     /**
-     * @var double
+     * @var float
      */
     private $startBalance;
 
     /**
-     * @var double
+     * @var float
      */
     private $currentBalance;
 
     /**
-     * @var double
+     * @var float
      */
     private $highestBalance;
 
     /**
-     * @var double
+     * @var float
      */
     private $lowestBalance;
 
     /**
-     * @var double
+     * @var float
      */
     private $dailyReturn;
 
@@ -93,32 +94,32 @@ class AlveoExport
     private $numLossTrades;
 
     /**
-     * @var double
+     * @var float
      */
     private $amtWinTrades;
 
     /**
-     * @var double
+     * @var float
      */
     private $amtLossTrades;
 
     /**
-     * @var double
+     * @var float
      */
     private $avgWinTradeAmt;
 
     /**
-     * @var double
+     * @var float
      */
     private $avgLossTradeAmt;
 
     /**
-     * @var double
+     * @var float
      */
     private $expectancy;
 
     /**
-     * @var double
+     * @var float
      */
     private $sharpe_ratio;
 
@@ -132,7 +133,10 @@ class AlveoExport
      */
     private $processingDate;
 
-
+    public function __construct($db) {
+        $this->db = $db;
+    }
+/*
     public function __construct(
         int $id,
         int $account,
@@ -143,20 +147,20 @@ class AlveoExport
         string $lastName,
         string $phone,
         string $email,
-        double $startBalance,
-        double $currentBalance,
-        double $highestBalance,
-        double $lowestBalance,
-        double $dailyReturn,
+        float $startBalance,
+        float $currentBalance,
+        float $highestBalance,
+        float $lowestBalance,
+        float $dailyReturn,
         int $numTrades,
         int $numWinTrades,
         int $numLossTrades,
-        double $amtWinTrades,
-        double $amtLossTrades,
-        double $avgWinTradeAmt,
-        double $avgLossTradeAmt,
-        double $expectancy,
-        double $sharpeRatio,
+        float $amtWinTrades,
+        float $amtLossTrades,
+        float $avgWinTradeAmt,
+        float $avgLossTradeAmt,
+        float $expectancy,
+        float $sharpeRatio,
         date $reportDate,
         date $processingDate
     ) {
@@ -185,7 +189,7 @@ class AlveoExport
         $this->sharpeRatio = $sharpeRatio;
         $this->reportDate = $reportDate;
         $this->processingDate = $processingDate;
-    }
+    }*/
 
     // Getters {
 
@@ -262,41 +266,41 @@ class AlveoExport
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getStartBalance(): double
+    public function getStartBalance(): float
     {
         return $this->startBalance;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getCurrentBalance(): double
+    public function getCurrentBalance(): float
     {
         return $this->currentBalance;
     }
     
     /**
-     * @return double
+     * @return float
      */
-    public function getHighestBalance(): double
+    public function getHighestBalance(): float
     {
         return $this->highestBalance;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getLowestBalance(): double
+    public function getLowestBalance(): float
     {
         return $this->lowestBalance;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getDailyReturn(): double
+    public function getDailyReturn(): float
     {
         return $this->dailyReturn;
     }
@@ -326,49 +330,49 @@ class AlveoExport
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getAmtWinTrades(): double
+    public function getAmtWinTrades(): float
     {
         return $this->amtWinTrades;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getAmtLossTrades(): double
+    public function getAmtLossTrades(): float
     {
         return $this->amtLossTrades;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getAvgWinTradeAmt(): double
+    public function getAvgWinTradeAmt(): float
     {
         return $this->avgWinTradeAmt;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getAvgLossTradeAmt(): double
+    public function getAvgLossTradeAmt(): float
     {
         return $this->avgLossTradeAmt;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getExpectancy(): double
+    public function getExpectancy(): float
     {
         return $this->expectancy;
     }
 
     /**
-     * @return double
+     * @return float
      */
-    public function getSharpeRatio(): double
+    public function getSharpeRatio(): float
     {
         return $this->sharpeRatio;
     }
@@ -469,41 +473,41 @@ class AlveoExport
     }
 
     /**
-     * @param double $startBalance
+     * @param float $startBalance
      */
-    public function setStartBalance(double $startBalance)
+    public function setStartBalance(float $startBalance)
     {
         $this->startBalance = $startBalance;
     }
 
     /**
-     * @param double $currentBalance
+     * @param float $currentBalance
      */
     public function setCurrentBalance($currentBalance)
     {
-        $this->currentBalance = currentBalance;
+        $this->currentBalance = $currentBalance;
     }
     
     /**
-     * @param double $highestBalance
+     * @param float $highestBalance
      */
-    public function setHighestBalance(double $highestBalance)
+    public function setHighestBalance(float $highestBalance)
     {
         $this->highestBalance = $highestBalance;
     }
 
     /**
-     * @param double $lowestBalance
+     * @param float $lowestBalance
      */
-    public function setLowestBalance(double $lowestBalance)
+    public function setLowestBalance(float $lowestBalance)
     {
         $this->lowestBalance = $lowestBalance;
     }
 
     /**
-     * @param double $dailyReturn
+     * @param float $dailyReturn
      */
-    public function setDailyReturn(double $dailyReturn)
+    public function setDailyReturn(float $dailyReturn)
     {
         $this->dailyReturn = $dailyReturn;
     }
@@ -533,49 +537,49 @@ class AlveoExport
     }
 
     /**
-     * @param double $amtWinTrades
+     * @param float $amtWinTrades
      */
-    public function setAmtWinTrades(double $amtWinTrades)
+    public function setAmtWinTrades(float $amtWinTrades)
     {
         $this->amtWinTrades = $amtWinTrades;
     }
 
     /**
-     * @param double $amtLossTrades
+     * @param float $amtLossTrades
      */
-    public function setAmtLossTrades(double $amtLossTrades)
+    public function setAmtLossTrades(float $amtLossTrades)
     {
         $this->amtLossTrades = $amtLossTrades;
     }
 
     /**
-     * @param double $avgWinTradeAmt
+     * @param float $avgWinTradeAmt
      */
-    public function setAvgWinTradeAmt(double $avgWinTradeAmt)
+    public function setAvgWinTradeAmt(float $avgWinTradeAmt)
     {
          $this->avgWinTradeAmt = $avgWinTradeAmt;
     }
 
     /**
-     * @param double $avgLossTradeAmt
+     * @param float $avgLossTradeAmt
      */
-    public function setAvgLossTradeAmt(double $avgLossTradeAmt)
+    public function setAvgLossTradeAmt(float $avgLossTradeAmt)
     {
         $this->avgLossTradeAmt = $avgLossTradeAmt;
     }
 
     /**
-     * @param double $expectancy
+     * @param float $expectancy
      */
-    public function setExpectancy(double $expectancy)
+    public function setExpectancy(float $expectancy)
     {
         $this->expectancy = $expectancy;
     }
 
     /**
-     * @param double $sharpeRatio
+     * @param float $sharpeRatio
      */
-    public function setSharpeRatio(double $sharpeRatio)
+    public function setSharpeRatio(float $sharpeRatio)
     {
          $this->sharpeRatio = $sharpeRatio;
     }
@@ -678,7 +682,7 @@ class AlveoExport
      * @param int $id
      * @return AlveoExport|null
      */
-    public static function load(PDO $pdo, int $id): ?self
+    public static function load(PDO $pdo, int $account): ?self
     {
         $query = "SELECT * FROM alveo_export WHERE account = :account";
         $stmt = $pdo->prepare($query);

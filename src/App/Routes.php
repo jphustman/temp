@@ -14,4 +14,4 @@ $app->get('/test/all', 'App\Controller\Test:all');
 $app->post('/auth/register', 'App\Controller\Auth:register');
 $app->post('/auth/signin', 'App\Controller\Auth:signin');
 
-$app->get('/report/import', 'App\Controller\Alveo:import');
+$app->post('/report/import', 'App\Controller\Alveo:import');
