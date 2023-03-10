@@ -135,4 +135,34 @@ final class Auth
 
         return $response->withJson($status);
     }
+
+    public function createServerKey(Request $request, Response $response): Response
+    {
+        $secret_key = $_ENV['JWT_SECRET'];
+        $issuer_claim = "https://tradingleagues.com"; // this can be the servername
+        $audience_claim = "Apiary Servers";
+        $issuedat_claim = Time(); // issued at
+        $notbefore_claim = $issuedat_claim - 10; //not before in seconds
+//            $expire_claim = $issuedat_claim.setDate() + 1; // expire time in seconds
+        $token = array(
+            "sub" => $username,
+            "iss" => $issuer_claim,
+            "aud" => $audience_claim,
+            "iat" => $issuedat_claim,
+            "nbf" => $notbefore_claim,
+//                "exp" => $expire_claim,
+            "data" => array(
+                    []
+                ));
+
+        $jwt = JWT::encode($token, $secret_key, 'HS256');
+
+        $status = [
+            'status' => 'Success',
+            'accessToken' => $jwt,
+            'timestamp' => time()
+        ];
+
+        return $response->withJson($status);
+    }
 }

@@ -1,9 +1,20 @@
-CREATE TABLE account_status (
-                                id     Integer(11) NOT NULL AUTO_INCREMENT,
-                                status VarChar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-                                PRIMARY KEY (
-                                             id
-                                    )
-) ENGINE=InnoDB AUTO_INCREMENT=1 ROW_FORMAT=DYNAMIC DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-ALTER TABLE account_status COMMENT = '';
-
+CREATE TABLE `account_status` (
+                                  `qid` int(11) NOT NULL,
+                                  `uid` int(11) NOT NULL,
+                                  `order_description` varchar(255) DEFAULT NULL,
+                                  `amount` decimal(10,2) DEFAULT NULL,
+                                  `state` varchar(50) DEFAULT NULL,
+                                  `comment` varchar(255) DEFAULT NULL,
+                                  `customer_profile_id` bigint(20) DEFAULT NULL,
+                                  `payment_profile_id` bigint(20) DEFAULT NULL,
+                                  `sku` varchar(50) DEFAULT NULL,
+                                  `length` int(11) DEFAULT NULL,
+                                  `period` varchar(50) DEFAULT NULL,
+                                  `start_date` datetime DEFAULT NULL,
+                                  `total_occurrences` int(11) DEFAULT NULL,
+                                  `remaining_occurrences` int(11) DEFAULT NULL,
+                                  `attempts` int(11) DEFAULT NULL,
+                                  `last_charged` datetime DEFAULT NULL,
+                                  `adjustment_class` varchar(50) DEFAULT NULL,
+                                  PRIMARY KEY (`qid`,`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
