@@ -1,9 +1,8 @@
 {
-    "name": "maurobonfietti/slim4-api-skeleton",
-    "description": "Useful skeleton for RESTful API development, using PHP and Slim 4.",
+    "name": "apiaryfund/leagues-api",
+    "description": "Trading Leagues backend API, using PHP and Slim 4.",
     "keywords": [
         "php",
-        "slim-micro-framework",
         "rest-api",
         "mysql",
         "slim4",
@@ -11,19 +10,18 @@
         "rest",
         "api"
     ],
-    "homepage": "https://github.com/maurobonfietti/slim4-api-skeleton",
+    "homepage": "https://bitbucket.org/apiaryfund/leagues-api/src/master/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mauro Bonfietti",
-            "email": "mauro.bonfietti@gmail.com",
-            "homepage": "https://github.com/maurobonfietti"
+            "name": "Apiary Fund"
         }
     ],
     "require": {
         "php": "^8.1",
         "ext-json": "*",
         "ext-pdo": "*",
+        "cakephp/chronos": "^2.3",
         "firebase/php-jwt": "^6.3",
         "php-di/php-di": "^7.0",
         "slim/psr7": "^1.4.0",

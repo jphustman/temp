@@ -18,5 +18,15 @@ final class Test
         $this->container = $container;
     }
 
+    public function auth(Request $request, Response $response): Response
+    {
+        $message = [
+            'auth' => "Success!",
+            'timestamp' => time()
+        ];
+
+        return $response->withJson($message);
+    }
+
 
 }

@@ -138,6 +138,7 @@ final class Auth
 
     public function createServerKey(Request $request, Response $response): Response
     {
+        $username = "ApiaryServers";
         $secret_key = $_ENV['JWT_SECRET'];
         $issuer_claim = "https://tradingleagues.com"; // this can be the servername
         $audience_claim = "Apiary Servers";
@@ -151,9 +152,7 @@ final class Auth
             "iat" => $issuedat_claim,
             "nbf" => $notbefore_claim,
 //                "exp" => $expire_claim,
-            "data" => array(
-                    []
-                ));
+        );
 
         $jwt = JWT::encode($token, $secret_key, 'HS256');
 

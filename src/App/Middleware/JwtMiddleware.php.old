@@ -3,6 +3,7 @@
 namespace src\App\Middleware;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
@@ -28,7 +29,7 @@ class JwtMiddleware
         }
 
         try {
-            $decodedJwt = JWT::decode($jwt, $this->secretKey, array('HS256'));
+            $decodedJwt = JWT::decode($jwt, new Key($this->secretKey, ('HS256')));
             $request = $request->withAttribute('user', (array)$decodedJwt->data);
             $response = $handler->handle($request);
         } catch (\Exception $e) {
